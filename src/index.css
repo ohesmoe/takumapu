@@ -246,6 +246,27 @@ p {
   color: var(--primary);
 }
 
+/* 평소 상태의 동그란 축소 마커. 선택되면 .marker(알약 모양)로 교체된다. */
+.marker-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--bg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.marker-dot:hover {
+  filter: brightness(1.1);
+  transform: scale(1.1);
+}
+
 .locate-btn {
   position: absolute;
   bottom: 20px;

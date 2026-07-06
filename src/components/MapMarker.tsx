@@ -1,18 +1,25 @@
 import type { Shop } from '../types/shop'
 
-const PIN_SVG =
-  '<svg class="icon" viewBox="0 0 256 256" width="14" height="14" xmlns="http://www.w3.org/2000/svg">' +
-  '<path class="secondary" d="M128 24c-48.6 0-88 39.4-88 88 0 66 88 120 88 120s88-54 88-120c0-48.6-39.4-88-88-88Z"/>' +
-  '<path stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M128 24c-48.6 0-88 39.4-88 88 0 66 88 120 88 120s88-54 88-120c0-48.6-39.4-88-88-88Z"/>' +
-  '<circle cx="128" cy="112" r="28" stroke="currentColor" stroke-width="16" fill="none"/>' +
-  '</svg>'
+function pinSvg(size: number): string {
+  return (
+    `<svg class="icon" viewBox="0 0 256 256" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">` +
+    '<path class="secondary" d="M128 24c-48.6 0-88 39.4-88 88 0 66 88 120 88 120s88-54 88-120c0-48.6-39.4-88-88-88Z"/>' +
+    '<path stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M128 24c-48.6 0-88 39.4-88 88 0 66 88 120 88 120s88-54 88-120c0-48.6-39.4-88-88-88Z"/>' +
+    '<circle cx="128" cy="112" r="28" stroke="currentColor" stroke-width="16" fill="none"/>' +
+    '</svg>'
+  )
+}
 
 /**
  * 네이버 지도 marker.icon.content로 넣을 HTML 문자열.
- * index.css의 .marker 스타일을 그대로 재사용해 디자인 시스템과 일치시킴.
+ * 평소엔 동그란 축소 버튼(.marker-dot), 선택된 매장만 이름이 보이는
+ * 알약 모양(.marker)으로 확대. index.css 스타일과 짝을 이룬다.
  */
 export function createMarkerContent(shop: Shop, selected: boolean): string {
-  return `<button class="marker${selected ? ' selected' : ''}" type="button">${PIN_SVG}${shop.name}</button>`
+  if (!selected) {
+    return `<button class="marker-dot" type="button" aria-label="${shop.name}">${pinSvg(18)}</button>`
+  }
+  return `<button class="marker selected" type="button">${pinSvg(14)}${shop.name}</button>`
 }
 
 /**
