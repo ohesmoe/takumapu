@@ -13,6 +13,7 @@ interface MapViewProps {
 
 const CLIENT_ID = import.meta.env.VITE_NAVER_MAP_CLIENT_ID as string | undefined
 const SEOUL_METRO_CENTER = { lat: 37.4979, lng: 127.0 }
+const FOCUS_ZOOM = 17
 
 /** icon.content 사용 시 size/anchor가 없으면 좌표 위치가 깨지므로 항상 함께 계산해서 넣는다. */
 function buildMarkerIcon(content: string) {
@@ -25,6 +26,7 @@ export function MapView({ shops, selectedShopId, onSelectShop }: MapViewProps) {
   const mapRef = useRef<any>(null)
   const markersRef = useRef<Map<string, any>>(new Map())
   const userMarkerRef = useRef<any>(null)
+  const selectedShopIdRef = useRef<string | null>(null)
   const [mapReady, setMapReady] = useState(false)
   const [loadError, setLoadError] = useState<string | null>(null)
   const { requestLocation } = useGeolocation()
@@ -51,7 +53,9 @@ export function MapView({ shops, selectedShopId, onSelectShop }: MapViewProps) {
       .catch((err: Error) => setLoadError(err.message))
   }, [])
 
-  // 필터링된 shops에 맞춰 마커 생성/갱신/제거 + 화면에 맞게 bounds 조정
+  // 필터링된 shops 목록이 바뀔 때만 마커 생성/제거 + 화면에 맞게 bounds 조정.
+  // (선택 상태 변경은 아래 별도 effect가 담당 — 여기서 fitBounds를 같이 하면
+  // 마커 클릭할 때마다 확대된 화면이 다시 전체 보기로 리셋돼버린다.)
   useEffect(() => {
     if (!mapReady || !mapRef.current) return
     const { naver } = window
@@ -75,25 +79,44 @@ export function MapView({ shops, selectedShopId, onSelectShop }: MapViewProps) {
     shops.forEach((shop) => {
       const position = new naver.maps.LatLng(shop.lat, shop.lng)
       bounds.extend(position)
-      const selected = shop.id === selectedShopId
-      const existing = markersRef.current.get(shop.id)
-
-      if (existing) {
-        existing.setIcon(buildMarkerIcon(createMarkerContent(shop, selected)))
-        return
-      }
+      if (markersRef.current.has(shop.id)) return
 
       const marker = new naver.maps.Marker({
         position,
         map,
-        icon: buildMarkerIcon(createMarkerContent(shop, selected)),
+        icon: buildMarkerIcon(createMarkerContent(shop, shop.id === selectedShopIdRef.current)),
       })
       naver.maps.Event.addListener(marker, 'click', () => onSelectShop(shop.id))
       markersRef.current.set(shop.id, marker)
     })
 
     map.fitBounds(bounds, { top: 80, right: 60, bottom: 80, left: 60 })
-  }, [mapReady, shops, selectedShopId, onSelectShop])
+  }, [mapReady, shops, onSelectShop])
+
+  // 선택된 매장이 바뀔 때: 마커 모양(점 ↔ 알약) 갱신 + 그 위치로 확대 이동
+  useEffect(() => {
+    selectedShopIdRef.current = selectedShopId
+    if (!mapReady || !mapRef.current) return
+    const { naver } = window
+    const map = mapRef.current
+
+    for (const [id, marker] of markersRef.current) {
+      const shop = shops.find((s) => s.id === id)
+      if (!shop) continue
+      marker.setIcon(buildMarkerIcon(createMarkerContent(shop, id === selectedShopId)))
+    }
+
+    const selectedShop = shops.find((s) => s.id === selectedShopId)
+    if (selectedShop) {
+      const position = new naver.maps.LatLng(selectedShop.lat, selectedShop.lng)
+      if (typeof map.morph === 'function') {
+        map.morph(position, FOCUS_ZOOM)
+      } else {
+        map.panTo(position)
+        map.setZoom(FOCUS_ZOOM)
+      }
+    }
+  }, [mapReady, selectedShopId, shops])
 
   const handleLocate = () => {
     requestLocation(({ lat, lng }) => {
