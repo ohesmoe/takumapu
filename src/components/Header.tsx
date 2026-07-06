@@ -12,7 +12,7 @@ export function Header({ query, onQueryChange }: HeaderProps) {
       <div className="app-header__brand">
         <DuotoneIcon name="store" size={28} />
         <h1>
-          Bboggl <span style={{ color: 'var(--primary)' }}>뽀글</span>
+          TAKUMAPU <span style={{ color: 'var(--primary)' }}>타쿠마푸</span>
         </h1>
       </div>
       <SearchBar value={query} onChange={onQueryChange} />
