@@ -1,0 +1,368 @@
+/* ===== 폰트: Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ===== 디자인 시스템: 색 조합 (스포티파이 · 네온 그린) ===== */
+:root {
+  --primary: #1DB954;
+  --text: #FFFFFF;
+  --sub: #B3B3B3;
+  --bg: #121212;
+  --surface: #181818;
+  --border: #2A2A2A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* ===== 버튼 모양: 둥근 알약 ===== */
+.btn {
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-weight: 700;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s;
+  font-family: inherit;
+  font-size: 14px;
+}
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+/* 보조 알약 버튼 (칩/필터용) */
+.btn-chip {
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--sub);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: 0.15s;
+  white-space: nowrap;
+}
+.btn-chip:hover {
+  border-color: var(--primary);
+  color: var(--text);
+}
+.btn-chip.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ===== 아이콘: 듀오톤 ===== */
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  stroke: none;
+  flex-shrink: 0;
+}
+.icon .secondary {
+  opacity: 0.25;
+}
+
+/* ===== 레이아웃 ===== */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-wrap: wrap;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header__brand h1 {
+  font-size: 20px;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* 검색 & 필터 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 16px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 420px;
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.search-bar input::placeholder {
+  color: var(--sub);
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+}
+
+/* 지도 영역 */
+.map-area {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a2e22 0%, var(--bg) 60%);
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.user-location-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #4285f4;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.3);
+}
+
+.map-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 24px;
+}
+
+.map-fallback h3 {
+  font-size: 16px;
+}
+
+.map-fallback p {
+  color: var(--sub);
+  font-size: 13px;
+  max-width: 320px;
+}
+
+.map-fallback code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* 네이버 지도가 icon.size/anchor(하단 중앙)로 위치를 정확히 계산해주므로
+   여기서는 별도 위치 보정 transform 없이 순수 비주얼 스타일만 담당. */
+.marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px 999px 999px 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--bg);
+  transition: 0.15s;
+  white-space: nowrap;
+}
+
+.marker:hover,
+.marker.selected {
+  filter: brightness(1.1);
+  transform: scale(1.08);
+}
+
+.marker.selected {
+  background: #fff;
+  color: var(--primary);
+}
+
+.locate-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+.locate-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 샵 상세 카드 */
+.shop-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 320px;
+  max-width: calc(100% - 40px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.shop-card__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--sub);
+  cursor: pointer;
+  padding: 4px;
+}
+.shop-card__close:hover {
+  color: var(--text);
+}
+
+.shop-card__category {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.shop-card h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.shop-card__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--sub);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.shop-card__tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.tag {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--sub);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.shop-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 720px) {
+  .app-header {
+    padding: 12px 16px;
+  }
+  .search-bar {
+    max-width: none;
+    order: 3;
+    width: 100%;
+  }
+  .filter-bar {
+    padding: 10px 16px;
+  }
+  .shop-card {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    max-width: none;
+  }
+}
