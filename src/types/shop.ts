@@ -10,5 +10,4 @@ export interface Shop {
   tags: string[]
   lat: number
   lng: number
-  naverMapUrl: string
 }

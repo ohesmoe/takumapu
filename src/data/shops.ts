@@ -2,8 +2,8 @@ import type { Shop } from '../types/shop'
 
 /**
  * 실제 운영 중인 서울 애니 굿즈샵 데이터(2026 기준, 웹 리서치로 주소 확인).
- * 좌표는 각 도로명주소·인근 지하철역 출구를 기준으로 한 근사치이며,
- * naverMapUrl로 실제 정확한 위치를 바로 확인할 수 있다.
+ * 좌표는 각 도로명주소·인근 지하철역 출구를 기준으로 한 근사치.
+ * 네이버 지도 링크는 ShopCard에서 name+address로 동적 생성한다.
  */
 export const shops: Shop[] = [
   {
@@ -16,7 +16,6 @@ export const shops: Shop[] = [
     tags: ['애니메이트', '만화'],
     lat: 37.5573,
     lng: 126.9239,
-    naverMapUrl: 'https://map.naver.com/p/search/애니메이트%20홍대점',
   },
   {
     id: 'hongdae-anseodang',
@@ -28,7 +27,6 @@ export const shops: Shop[] = [
     tags: ['굿즈', '홍대입구역'],
     lat: 37.5556,
     lng: 126.9223,
-    naverMapUrl: 'https://map.naver.com/p/search/안서당%20홍대',
   },
   {
     id: 'hongdae-inomono',
@@ -40,7 +38,6 @@ export const shops: Shop[] = [
     tags: ['편집숍', '서브컬처의류'],
     lat: 37.5548,
     lng: 126.9257,
-    naverMapUrl: 'https://map.naver.com/p/search/아이노모노%20홍대',
   },
   {
     id: 'hongdae-lashinbang',
@@ -52,7 +49,6 @@ export const shops: Shop[] = [
     tags: ['중고', '위탁판매'],
     lat: 37.5578,
     lng: 126.9228,
-    naverMapUrl: 'https://map.naver.com/p/search/라신반%20서울본점',
   },
   {
     id: 'hongdae-figurefriends',
@@ -64,7 +60,6 @@ export const shops: Shop[] = [
     tags: ['정품', '넨도로이드'],
     lat: 37.558,
     lng: 126.9245,
-    naverMapUrl: 'https://map.naver.com/p/search/피규어프렌즈',
   },
   {
     id: 'gundae-secondshop',
@@ -76,7 +71,6 @@ export const shops: Shop[] = [
     tags: ['넨도로이드', '코스프레용품'],
     lat: 37.5397,
     lng: 127.0705,
-    naverMapUrl: 'https://map.naver.com/p/search/세컨드샵%20건대',
   },
   {
     id: 'gundae-comicgallery',
@@ -88,7 +82,6 @@ export const shops: Shop[] = [
     tags: ['할인적립', '만화대여'],
     lat: 37.5397,
     lng: 127.0705,
-    naverMapUrl: 'https://map.naver.com/p/search/코믹갤러리%20건대',
   },
   {
     id: 'gundae-byeolbo',
@@ -100,7 +93,6 @@ export const shops: Shop[] = [
     tags: ['가챠', '쿠지'],
     lat: 37.5424,
     lng: 127.0715,
-    naverMapUrl: 'https://map.naver.com/p/search/별보러가챠',
   },
   {
     id: 'samsung-anipop',
@@ -112,7 +104,6 @@ export const shops: Shop[] = [
     tags: ['대형매장', '제일복권'],
     lat: 37.51,
     lng: 127.0628,
-    naverMapUrl: 'https://map.naver.com/p/search/애니팝굿즈샵',
   },
   {
     id: 'gangnam-brothergoods',
@@ -124,7 +115,6 @@ export const shops: Shop[] = [
     tags: ['산리오', '연중무휴'],
     lat: 37.4972,
     lng: 127.0264,
-    naverMapUrl: 'https://map.naver.com/p/search/브라더굿즈%20강남점',
   },
   {
     id: 'dongdaemun-hellowshop',
@@ -136,7 +126,6 @@ export const shops: Shop[] = [
     tags: ['의상제작', '가발'],
     lat: 37.5788,
     lng: 127.0361,
-    naverMapUrl: 'https://map.naver.com/p/search/헬로우샵',
   },
   {
     id: 'seongshin-comicct',
@@ -148,7 +137,6 @@ export const shops: Shop[] = [
     tags: ['만화전문서점', '적립'],
     lat: 37.592,
     lng: 127.0178,
-    naverMapUrl: 'https://map.naver.com/p/search/코믹시티%20성신북스',
   },
   {
     id: 'jamsil-animate',
@@ -160,7 +148,6 @@ export const shops: Shop[] = [
     tags: ['애니메이트', '이치방쿠지'],
     lat: 37.5125,
     lng: 127.1025,
-    naverMapUrl: 'https://map.naver.com/p/search/애니메이트%20잠실%20롯데점',
   },
   {
     id: 'suwon-jgoods',
@@ -172,7 +159,6 @@ export const shops: Shop[] = [
     tags: ['이치방쿠지', '수원역'],
     lat: 37.258,
     lng: 127.018,
-    naverMapUrl: 'https://map.naver.com/p/search/제이굿즈%20수원점',
   },
   {
     id: 'suwon-kirakiratomo',
@@ -184,7 +170,6 @@ export const shops: Shop[] = [
     tags: ['가챠', '피규어'],
     lat: 37.2645,
     lng: 127.001,
-    naverMapUrl: 'https://map.naver.com/p/search/키라키라토모',
   },
   {
     id: 'bupyeong-thegoods',
@@ -196,7 +181,6 @@ export const shops: Shop[] = [
     tags: ['산리오', '부평문화의거리'],
     lat: 37.4934,
     lng: 126.7239,
-    naverMapUrl: 'https://map.naver.com/p/search/더굿즈%20인천부평점',
   },
   {
     id: 'bupyeong-omocha',
@@ -208,7 +192,6 @@ export const shops: Shop[] = [
     tags: ['일본직수입', '캡슐토이'],
     lat: 37.493,
     lng: 126.7233,
-    naverMapUrl: 'https://map.naver.com/p/search/오모차상점',
   },
   {
     id: 'bucheon-akihabara',
@@ -220,7 +203,6 @@ export const shops: Shop[] = [
     tags: ['레진피규어', '이치방쿠지'],
     lat: 37.4831,
     lng: 126.783,
-    naverMapUrl: 'https://map.naver.com/p/search/아키하바라in부천',
   },
   {
     id: 'bucheon-langstore',
@@ -232,7 +214,6 @@ export const shops: Shop[] = [
     tags: ['이치방쿠지', '소품'],
     lat: 37.4836,
     lng: 126.7828,
-    naverMapUrl: 'https://map.naver.com/p/search/랑스토어%20부천점',
   },
   {
     id: 'hyehwa-mapiand',
@@ -244,7 +225,6 @@ export const shops: Shop[] = [
     tags: ['랜덤박스', '혜화역'],
     lat: 37.5822,
     lng: 127.0016,
-    naverMapUrl: 'https://map.naver.com/p/search/마피앤드%20혜화본점',
   },
   {
     id: 'nowon-managoods',
@@ -256,7 +236,6 @@ export const shops: Shop[] = [
     tags: ['이치방쿠지', '다장르'],
     lat: 37.6597,
     lng: 127.0699,
-    naverMapUrl: 'https://map.naver.com/p/search/마나굿즈%20상계',
   },
   {
     id: 'sillim-comiczone',
@@ -268,7 +247,6 @@ export const shops: Shop[] = [
     tags: ['만화대여', '신림역'],
     lat: 37.4844,
     lng: 126.9296,
-    naverMapUrl: 'https://map.naver.com/p/search/코믹존%20신림점',
   },
   {
     id: 'yongsan-gundambase',
@@ -280,7 +258,6 @@ export const shops: Shop[] = [
     tags: ['건프라', '공식매장'],
     lat: 37.5299,
     lng: 126.9648,
-    naverMapUrl: 'https://map.naver.com/p/search/건담베이스%20서울',
   },
   {
     id: 'hannam-dotorisup',
@@ -292,7 +269,6 @@ export const shops: Shop[] = [
     tags: ['지브리', '공식캐릭터샵'],
     lat: 37.5344,
     lng: 127.0004,
-    naverMapUrl: 'https://map.naver.com/p/search/도토리숲%20한남',
   },
   {
     id: 'hongdae-urara',
@@ -304,7 +280,6 @@ export const shops: Shop[] = [
     tags: ['제일복권', '쿠지'],
     lat: 37.5524,
     lng: 126.9223,
-    naverMapUrl: 'https://map.naver.com/p/search/스페이스%20우라라%20홍대입구점',
   },
   {
     id: 'sindorim-figurepresso',
@@ -316,7 +291,6 @@ export const shops: Shop[] = [
     tags: ['테크노마트', '프라모델'],
     lat: 37.5089,
     lng: 126.8914,
-    naverMapUrl: 'https://map.naver.com/p/search/피규어프레소%20신도림점',
   },
   {
     id: 'hapjeong-aniplus',
@@ -328,7 +302,6 @@ export const shops: Shop[] = [
     tags: ['공식굿즈', '콜라보카페'],
     lat: 37.5495,
     lng: 126.9137,
-    naverMapUrl: 'https://map.naver.com/p/search/애니플러스%20서울합정점',
   },
   {
     id: 'hongdae-figurecenter1',
@@ -340,7 +313,6 @@ export const shops: Shop[] = [
     tags: ['피규어', '쿠지'],
     lat: 37.5578,
     lng: 126.9243,
-    naverMapUrl: 'https://map.naver.com/p/search/피규어센터%201호점%20홍대',
   },
   {
     id: 'hongdae-figurecenter2',
@@ -352,7 +324,6 @@ export const shops: Shop[] = [
     tags: ['피규어', '쿠지'],
     lat: 37.5528,
     lng: 126.9226,
-    naverMapUrl: 'https://map.naver.com/p/search/피규어센터%202호점%20홍대',
   },
   {
     id: 'hongdae-figurepresso-fp',
@@ -364,7 +335,6 @@ export const shops: Shop[] = [
     tags: ['제일복권', '프라모델'],
     lat: 37.5525,
     lng: 126.9224,
-    naverMapUrl: 'https://map.naver.com/p/search/피규어프레소%20에프피점',
   },
   {
     id: 'hongdae-aniplaza',
@@ -376,7 +346,6 @@ export const shops: Shop[] = [
     tags: ['이치방쿠지', '동인굿즈'],
     lat: 37.552,
     lng: 126.922,
-    naverMapUrl: 'https://map.naver.com/p/search/애니플라자%20홍대',
   },
   {
     id: 'hongdae-shiro',
@@ -388,7 +357,6 @@ export const shops: Shop[] = [
     tags: ['죠죠', '애니굿즈'],
     lat: 37.5535,
     lng: 126.9228,
-    naverMapUrl: 'https://map.naver.com/p/search/시로상점%20홍대',
   },
   {
     id: 'sangsu-pooshop',
@@ -400,7 +368,6 @@ export const shops: Shop[] = [
     tags: ['빈티지', '고전굿즈'],
     lat: 37.5477,
     lng: 126.9227,
-    naverMapUrl: 'https://map.naver.com/p/search/푸숍%20상수',
   },
   {
     id: 'hongdae-doonyboo',
@@ -412,7 +379,6 @@ export const shops: Shop[] = [
     tags: ['산리오', '가챠'],
     lat: 37.555,
     lng: 126.9256,
-    naverMapUrl: 'https://map.naver.com/p/search/두니부%20홍대',
   },
   {
     id: 'hongdae-anisekai',
@@ -424,7 +390,6 @@ export const shops: Shop[] = [
     tags: ['캐릭터굿즈', '홍대'],
     lat: 37.5533,
     lng: 126.9218,
-    naverMapUrl: 'https://map.naver.com/p/search/애니세카이%20홍대점',
   },
   {
     id: 'hongdae-onefigure',
@@ -436,7 +401,6 @@ export const shops: Shop[] = [
     tags: ['피규어전문', '홍대입구역'],
     lat: 37.5498,
     lng: 126.9236,
-    naverMapUrl: 'https://map.naver.com/p/search/원피규어%20홍대',
   },
   {
     id: 'hongdae-wechaigoods',
@@ -448,7 +412,6 @@ export const shops: Shop[] = [
     tags: ['애니굿즈', '캐릭터굿즈'],
     lat: 37.551,
     lng: 126.925,
-    naverMapUrl: 'https://map.naver.com/p/search/웨차이굿즈',
   },
   {
     id: 'hongdae-kkuing',
@@ -460,6 +423,5 @@ export const shops: Shop[] = [
     tags: ['양판점', '캐릭터굿즈'],
     lat: 37.554,
     lng: 126.9225,
-    naverMapUrl: 'https://map.naver.com/p/search/꾸잉양판점',
   },
 ]

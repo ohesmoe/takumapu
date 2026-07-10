@@ -6,6 +6,11 @@ interface ShopCardProps {
   onClose: () => void
 }
 
+/** 이름만으로 검색하면 엉뚱한 결과가 나올 수 있어 주소까지 함께 검색어에 넣어 정확도를 높인다. */
+function naverMapSearchUrl(shop: Shop): string {
+  return `https://map.naver.com/p/search/${encodeURIComponent(`${shop.name} ${shop.address}`)}`
+}
+
 export function ShopCard({ shop, onClose }: ShopCardProps) {
   return (
     <div className="shop-card">
@@ -31,7 +36,7 @@ export function ShopCard({ shop, onClose }: ShopCardProps) {
 
       <a
         className="btn shop-card__link"
-        href={shop.naverMapUrl}
+        href={naverMapSearchUrl(shop)}
         target="_blank"
         rel="noopener noreferrer"
       >
